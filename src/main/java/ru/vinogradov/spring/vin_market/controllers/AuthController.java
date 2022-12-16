@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.vinogradov.spring.vin_market.dtos.JwtRequest;
 import ru.vinogradov.spring.vin_market.dtos.JwtResponse;
+import ru.vinogradov.spring.vin_market.dtos.StringResponse;
 import ru.vinogradov.spring.vin_market.services.UserService;
 import ru.vinogradov.spring.vin_market.utils.JwtTokenUtil;
+
+import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,4 +39,8 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    @GetMapping("/auth_check")
+    public StringResponse authCheck(Principal principal) {
+        return new StringResponse(principal.getName());
+    }
 }
