@@ -71,4 +71,8 @@ public class Cart {
             totalPrice += item.getPrice();
         }
     }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
 }

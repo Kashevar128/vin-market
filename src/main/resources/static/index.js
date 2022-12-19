@@ -9,7 +9,12 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
                 $scope.user.password = null;
             }
         }, function errorCallback(response) {
+        });
+    }
 
+    $scope.createOrder = function () {
+        $http.post('http://localhost:17003/vin/api/v1/orders').then(function (response) {
+           $scope.order = response.data;
         });
     }
 

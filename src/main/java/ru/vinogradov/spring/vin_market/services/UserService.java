@@ -1,6 +1,5 @@
 package ru.vinogradov.spring.vin_market.services;
 
-import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -76,6 +76,7 @@
         </tbody>
     </table>
 
+    <p></p>
     <h3>Корзина</h3>
     <p></p>
     <table class="table table-hover">
@@ -95,7 +96,7 @@
                 {{item.quantity}}
                 <button type="button" class="btn btn-primary btn-sm" ng-click="addQuantity(item.productId)">+</button>
             </td>
-            <td>{{item.priceProduct + ' x ' + item.quantity + ' = ' + item.price}}</td>
+            <td>{{item.pricePerProduct + ' x ' + item.quantity + ' = ' + item.price}}</td>
             <td>
                 <button class="btn btn-danger" ng-click="removeFromCart(item.productId)">Убрать из корзины</button>
             </td>
@@ -108,6 +109,48 @@
         </tbody>
     </table>
     <button class="btn btn-secondary" ng-click="clearCart()">Очистить корзину</button>
+    <button type="button" class="btn btn-success" ng-click="createOrder()">Сделать заказ</button>
+
+    <p></p>
+    <h3>Заказ</h3>
+    <p></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Название</td>
+            <td>Количество</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in order.items">
+            <td>{{item.productTitle}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.pricePerProduct + ' x ' + item.quantity + ' = ' + item.price}}</td>
+        </tr>
+        <tr>
+            <td>Итого</td>
+            <td></td>
+            <td>{{order.totalPrice}}</td>
+        </tr>
+        <tr>
+            <td>Адресс</td>
+            <td>{{order.address}}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Телефон</td>
+            <td>{{order.phone}}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>@mail</td>
+            <td>{{order.email}}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
