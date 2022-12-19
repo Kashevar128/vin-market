@@ -1,0 +1,4 @@
+server:
+  port: 17004
+  servlet:
+    context-path: /vin-carts
