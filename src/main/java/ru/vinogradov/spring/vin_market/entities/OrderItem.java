@@ -1,35 +1,40 @@
 package ru.vinogradov.spring.vin_market.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "order_items")
 @Getter
 @Setter
-@Table(name = "products")
 @NoArgsConstructor
-public class Product {
+@AllArgsConstructor
+public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @Column(name = "quantity")
+    private int quantity;
+
+    @Column(name = "price_per_product")
+    private int pricePerProduct;
 
     @Column(name = "price")
     private int price;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -38,4 +43,5 @@ public class Product {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 }
