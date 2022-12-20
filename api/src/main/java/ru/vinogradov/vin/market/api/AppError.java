@@ -1,8 +1,17 @@
-package ru.vinogradov.vin.market.core.exceptions;
+package ru.vinogradov.vin.market.api;
 
 public class AppError {
     private int statusCode;
     private String message;
+
+    public AppError() {
+
+    }
+
+    public AppError(int statusCode, String message) {
+        this.statusCode = statusCode;
+        this.message = message;
+    }
 
     public int getStatusCode() {
         return statusCode;
@@ -17,15 +26,6 @@ public class AppError {
     }
 
     public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public AppError() {
-
-    }
-
-    public AppError(int statusCode, String message) {
-        this.statusCode = statusCode;
         this.message = message;
     }
 }

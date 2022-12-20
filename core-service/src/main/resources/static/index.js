@@ -55,37 +55,37 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
     }
 
     $scope.removeFromCart = function (productId) {
-        $http.get('http://localhost:17003/vin/api/v1/cart/remove/' + productId).then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart/remove/' + productId).then(function (response) {
             $scope.loadCart();
         });
     }
 
     $scope.clearCart = function () {
-        $http.get('http://localhost:17003/vin/api/v1/cart/clear').then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart/clear').then(function (response) {
             $scope.loadCart();
         });
     }
 
     $scope.addToCart = function (productId) {
-        $http.get('http://localhost:17003/vin/api/v1/cart/add/' + productId).then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart/add/' + productId).then(function (response) {
             $scope.loadCart();
         });
     }
 
     $scope.addQuantity = function (productId) {
-        $http.get('http://localhost:17003/vin/api/v1/cart/cartItem/add/' + productId).then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart/cartItem/add/' + productId).then(function (response) {
             $scope.loadCart();
         })
     }
 
     $scope.reduceQuantity = function (productId) {
-        $http.get('http://localhost:17003/vin/api/v1/cart/cartItem/reduce/' + productId).then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart/cartItem/reduce/' + productId).then(function (response) {
             $scope.loadCart();
         })
     }
 
     $scope.loadCart = function () {
-        $http.get('http://localhost:17003/vin/api/v1/cart').then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart').then(function (response) {
             $scope.cart = response.data;
         });
     }

@@ -1,18 +1,18 @@
-package ru.vinogradov.vin.market.core.controllers;
+package ru.vinogradov.vin.market.carts.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.vinogradov.vin.market.core.model.Cart;
-import ru.vinogradov.vin.market.core.services.CartService;
+import org.springframework.web.bind.annotation.*;
+import ru.vinogradov.vin.market.api.CartDto;
+import ru.vinogradov.vin.market.carts.converters.CartConverter;
+import ru.vinogradov.vin.market.carts.services.CartService;
 
 @RestController
 @RequestMapping("/api/v1/cart")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class CartController {
     private final CartService cartService;
+    private final CartConverter cartConverter;
 
     @GetMapping("/add/{id}")
     public void addToCart(@PathVariable Long id) {
@@ -30,8 +30,8 @@ public class CartController {
     }
 
     @GetMapping
-    public Cart getCurrentCart() {
-        return cartService.getCurrentCart();
+    public CartDto getCurrentCart() {
+        return cartConverter.entityToDto(cartService.getCurrentCart());
     }
 
     @GetMapping("/cartItem/add/{id}")

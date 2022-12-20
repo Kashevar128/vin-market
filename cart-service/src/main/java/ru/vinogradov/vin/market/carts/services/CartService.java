@@ -1,16 +1,17 @@
-package ru.vinogradov.vin.market.core.services;
+package ru.vinogradov.vin.market.carts.services;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.vinogradov.vin.market.core.entities.Product;
-import ru.vinogradov.vin.market.core.model.Cart;
-import ru.vinogradov.vin.market.core.exceptions.ResourceNotFoundException;
+import ru.vinogradov.vin.market.api.ProductDto;
+import ru.vinogradov.vin.market.api.ResourceNotFoundException;
+import ru.vinogradov.vin.market.carts.integrations.ProductServiceIntegration;
+import ru.vinogradov.vin.market.carts.model.Cart;
 
 @Service
 @RequiredArgsConstructor
 public class CartService {
-    private final ProductService productService;
+    private final ProductServiceIntegration productServiceIntegration;
     private Cart tempCart;
 
     @PostConstruct
@@ -23,10 +24,10 @@ public class CartService {
     }
 
     public void add(Long productId) {
-        Product product = productService.findByID(productId).orElseThrow(
+        ProductDto productDto = productServiceIntegration.getProductById(productId).orElseThrow(
                 () -> new ResourceNotFoundException("Не удается добавить продукт с id: " + productId +
                         " в корзину. Продукт не найден"));
-        tempCart.add(product);
+        tempCart.add(productDto);
     }
 
     public void remove(Long productId) {

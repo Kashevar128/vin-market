@@ -1,4 +1,4 @@
-package ru.vinogradov.vin.market.core.exceptions;
+package ru.vinogradov.vin.market.api;
 
 public class ResourceNotFoundException extends RuntimeException{
     public ResourceNotFoundException(String message) {

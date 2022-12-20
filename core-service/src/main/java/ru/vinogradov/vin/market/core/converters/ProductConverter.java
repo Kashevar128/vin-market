@@ -2,10 +2,10 @@ package ru.vinogradov.vin.market.core.converters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.vinogradov.vin.market.core.dtos.ProductDto;
+import ru.vinogradov.vin.market.api.ProductDto;
+import ru.vinogradov.vin.market.api.ResourceNotFoundException;
 import ru.vinogradov.vin.market.core.entities.Category;
 import ru.vinogradov.vin.market.core.entities.Product;
-import ru.vinogradov.vin.market.core.exceptions.ResourceNotFoundException;
 import ru.vinogradov.vin.market.core.services.CategoryService;
 
 @Component

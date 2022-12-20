@@ -2,11 +2,11 @@ package ru.vinogradov.vin.market.core.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.vinogradov.vin.market.api.ProductDto;
+import ru.vinogradov.vin.market.api.ResourceNotFoundException;
 import ru.vinogradov.vin.market.core.converters.ProductConverter;
-import ru.vinogradov.vin.market.core.dtos.ProductDto;
 import ru.vinogradov.vin.market.core.entities.Product;
 import ru.vinogradov.vin.market.core.services.ProductService;
-import ru.vinogradov.vin.market.core.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;

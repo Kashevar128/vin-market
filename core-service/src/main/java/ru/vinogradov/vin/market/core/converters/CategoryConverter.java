@@ -2,7 +2,7 @@ package ru.vinogradov.vin.market.core.converters;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.vinogradov.vin.market.core.dtos.CategoryDto;
+import ru.vinogradov.vin.market.api.CategoryDto;
 import ru.vinogradov.vin.market.core.entities.Category;
 
 import java.util.stream.Collectors;

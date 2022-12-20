@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.vinogradov.vin.market.core.dtos.JwtRequest;
-import ru.vinogradov.vin.market.core.dtos.JwtResponse;
-import ru.vinogradov.vin.market.core.dtos.StringResponse;
+import ru.vinogradov.vin.market.api.JwtRequest;
+import ru.vinogradov.vin.market.api.JwtResponse;
+import ru.vinogradov.vin.market.api.StringResponse;
 import ru.vinogradov.vin.market.core.services.UserService;
 import ru.vinogradov.vin.market.core.utils.JwtTokenUtil;
 

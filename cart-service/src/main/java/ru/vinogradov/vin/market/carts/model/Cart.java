@@ -1,7 +1,7 @@
-package ru.vinogradov.vin.market.core.model;
+package ru.vinogradov.vin.market.carts.model;
 
 import lombok.Data;
-import ru.vinogradov.vin.market.core.entities.Product;
+import ru.vinogradov.vin.market.api.ProductDto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,16 +20,16 @@ public class Cart {
         return Collections.unmodifiableList(items);
     }
 
-    public void add(Product product) {
+    public void add(ProductDto productDto) {
         for (CartItem item : items) {
-            if (product.getId().equals(item.getProductId())) {
+            if (productDto.getId().equals(item.getProductId())) {
                 item.addQuantity(1);
                 recalculate();
                 return;
             }
         }
-        items.add(new CartItem(product.getId(), product.getTitle(),
-                1, product.getPrice(), product.getPrice()));
+        items.add(new CartItem(productDto.getId(), productDto.getTitle(),
+                1, productDto.getPrice(), productDto.getPrice()));
         recalculate();
     }
 

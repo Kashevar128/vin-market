@@ -1,4 +1,4 @@
-package ru.vinogradov.vin.market.core.model;
+package ru.vinogradov.vin.market.carts.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
