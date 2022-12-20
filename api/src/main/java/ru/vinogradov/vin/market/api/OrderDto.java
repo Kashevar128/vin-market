@@ -14,6 +14,17 @@ public class OrderDto {
     public OrderDto() {
     }
 
+    public OrderDto(Long id, String userName, List<OrderItemDto> items,
+                    String phone, String address, String email, int totalPrice) {
+        this.id = id;
+        this.userName = userName;
+        this.items = items;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.totalPrice = totalPrice;
+    }
+
     public Long getId() {
         return id;
     }
