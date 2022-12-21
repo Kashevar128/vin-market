@@ -18,36 +18,30 @@ import ru.vinogradov.vin.market.carts.properties.ProductServiceIntegrationProper
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-//@EnableConfigurationProperties(
-//        ProductServiceIntegrationProperties.class
-//)
+@EnableConfigurationProperties(
+        ProductServiceIntegrationProperties.class
+)
 @RequiredArgsConstructor
 public class AppConfig {
-    //private final ProductServiceIntegrationProperties productServiceIntegrationProperties;
-    private String url;
+    private final ProductServiceIntegrationProperties productServiceIntegrationProperties;
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+    public WebClient productServiceWebClient() {
+        TcpClient tcpClient = TcpClient
+                .create()
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,
+                        productServiceIntegrationProperties.getConnectTimeout())
+                .doOnConnected(connection -> {
+                    connection.addHandlerLast(new ReadTimeoutHandler(
+                            productServiceIntegrationProperties.getReadTimeout(), TimeUnit.MILLISECONDS));
+                    connection.addHandlerLast(new WriteTimeoutHandler(
+                            productServiceIntegrationProperties.getWriteTimeout(), TimeUnit.MILLISECONDS));
+                });
 
-//    @Bean
-//    public WebClient productServiceWebClient() {
-//        TcpClient tcpClient = TcpClient
-//                .create()
-//                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS,
-//                        productServiceIntegrationProperties.getConnectTimeout())
-//                .doOnConnected(connection -> {
-//                    connection.addHandlerLast(new ReadTimeoutHandler(
-//                            productServiceIntegrationProperties.getReadTimeout(), TimeUnit.MILLISECONDS));
-//                    connection.addHandlerLast(new WriteTimeoutHandler(
-//                            productServiceIntegrationProperties.getWriteTimeout(), TimeUnit.MILLISECONDS));
-//                });
-//
-//        return WebClient
-//                .builder()
-//                .baseUrl(productServiceIntegrationProperties.getUrl())
-//                .clientConnector(new ReactorClientHttpConnector(HttpClient.from(tcpClient)))
-//                .build();
-//    }
+        return WebClient
+                .builder()
+                .baseUrl(productServiceIntegrationProperties.getUrl())
+                .clientConnector(new ReactorClientHttpConnector(HttpClient.from(tcpClient)))
+                .build();
+    }
 }
