@@ -8,6 +8,8 @@ import ru.vinogradov.vin.market.api.ResourceNotFoundException;
 import ru.vinogradov.vin.market.carts.integrations.ProductServiceIntegration;
 import ru.vinogradov.vin.market.carts.model.Cart;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CartService {
@@ -24,7 +26,8 @@ public class CartService {
     }
 
     public void add(Long productId) {
-        ProductDto productDto = productServiceIntegration.getProductById(productId);
+        ProductDto productDto = productServiceIntegration.getProductById(productId).orElseThrow(() ->
+                new ResourceNotFoundException("Нужный продукт не найден"));
         tempCart.add(productDto);
     }
 
