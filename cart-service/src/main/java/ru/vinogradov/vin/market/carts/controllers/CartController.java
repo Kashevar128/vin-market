@@ -19,7 +19,7 @@ public class CartController {
         cartService.add(id);
     }
 
-    @DeleteMapping()
+    @GetMapping("/clear")
     public void clearCart() {
         cartService.clear();
     }

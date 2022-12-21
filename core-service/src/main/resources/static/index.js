@@ -15,7 +15,6 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
     $scope.createOrder = function () {
         $http.post('http://localhost:17003/vin/api/v1/orders').then(function (response) {
            $scope.order = response.data;
-           $scope.loadCart();
         });
     }
 
@@ -62,7 +61,7 @@ angular.module('market', ['ngStorage']).controller('indexController', function (
     }
 
     $scope.clearCart = function () {
-        $http.delete('http://localhost:17004/vin-carts/api/v1/cart').then(function (response) {
+        $http.get('http://localhost:17004/vin-carts/api/v1/cart/clear').then(function (response) {
             $scope.loadCart();
         });
     }

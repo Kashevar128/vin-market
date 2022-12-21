@@ -19,7 +19,6 @@ public class ProductServiceIntegration {
                 .retrieve()
                 .onStatus(
                         httpStatusCode -> httpStatusCode.value() == HttpStatus.NOT_FOUND.value(),
-                       // clientResponse -> clientResponse.bodyToMono(AppError.class).map(appError -> new ResourceNotFoundException("Товар не найден в продуктовом МС");
                         clientResponse -> Mono.error(new ResourceNotFoundException("Товар не найден в продуктовом МС"))
                         )
                 .bodyToMono(ProductDto.class)

@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
-@CrossOrigin("*")
 public class ProductController {
     private final ProductService productService;
     private final ProductConverter productConverter;
@@ -34,7 +33,8 @@ public class ProductController {
     @PostMapping
     public ProductDto createNewProduct(@RequestBody ProductDto productDto) {
         Product product = productService.createNewProduct(productDto);
-        return productConverter.entityToDto(product);
+        ProductDto productDto1 = productConverter.entityToDto(product);
+        return productDto1;
     }
 
     @DeleteMapping("/{id}")
