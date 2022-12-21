@@ -17,15 +17,4 @@ public class ProductConverter {
         return new ProductDto(product.getId(), product.getTitle(),
                 product.getPrice(), product.getCategory().getTitle());
     }
-
-    public Product dtoToEntity(ProductDto productDto) {
-        Product product = new Product();
-        product.setId(productDto.getId());
-        product.setTitle(productDto.getTitle());
-        product.setPrice(productDto.getPrice());
-        Category category = categoryService.findByTitle(productDto.getCategoryTitle()).orElseThrow(
-                () -> new ResourceNotFoundException("Категория не найдена")
-        );
-        return product;
-    }
 }

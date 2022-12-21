@@ -10,6 +10,12 @@ public class CategoryDto {
     public CategoryDto() {
     }
 
+    public CategoryDto(Long id, String title, List<ProductDto> products) {
+        this.id = id;
+        this.title = title;
+        this.products = products;
+    }
+
     public Long getId() {
         return id;
     }

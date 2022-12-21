@@ -18,7 +18,6 @@ public class CartServiceIntegration {
     }
 
     public void clearCurrentCart() {
-        //restTemplate.getForEntity("http://localhost:17004/vin-carts/api/v1/cart/clear", Void.class);
         restTemplate.delete("http://localhost:17004/vin-carts/api/v1/cart");
     }
 }

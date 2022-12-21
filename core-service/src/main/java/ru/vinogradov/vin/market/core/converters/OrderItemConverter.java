@@ -12,13 +12,9 @@ import ru.vinogradov.vin.market.core.entities.OrderItem;
 public class OrderItemConverter {
 
     public OrderItemDto entityToDto(OrderItem orderItem) {
-        OrderItemDto orderItemDto = new OrderItemDto(orderItem.getId(), orderItem.getProduct().getTitle(),
+        return new OrderItemDto(orderItem.getId(), orderItem.getProduct().getTitle(),
                 orderItem.getQuantity(), orderItem.getPricePerProduct(),
                 orderItem.getPrice());
-        return orderItemDto;
     }
 
-    public OrderItem dtoToEntity (OrderItemDto orderItemDto) {
-      return null;
-    }
 }
